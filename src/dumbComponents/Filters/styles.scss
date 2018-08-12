@@ -1,0 +1,52 @@
+%com-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.result-filter {
+    padding: 14px;
+    width: 20%;
+    margin-right: 20px;
+    box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
+    .section-head {
+      font-size: 14px;
+      font-weight: bold;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    .discount-section {
+      @extend %com-section;
+      .checkbox-row {
+        display: flex;
+        margin-left: 0px;
+        align-items: center;
+        margin-bottom: 10px;
+        input {
+          margin-right: 14px;
+          height: 15px;
+          width: 15px;
+        }
+      }
+    }
+    .price-section {
+      @extend %com-section;
+      .slider-input {
+        display: flex;
+        label {
+          margin-right: 10px;
+        }
+       
+      }
+    }
+    .brand-section {
+      @extend %com-section;
+      .checkbox-row {
+        margin-bottom: 10px;
+        display: flex;
+        input {
+          margin-right: 14px;
+        }
+      }
+    }
+
+}

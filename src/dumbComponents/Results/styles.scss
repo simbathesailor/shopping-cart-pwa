@@ -1,0 +1,96 @@
+.result-container {
+  .preference-container {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    margin: 70px 60px 0px 60px;
+    select {
+      height: 26px;
+      background: transparent;
+    }
+  }
+  .results-main {
+    justify-content: flex-end;
+    display: flex;
+    margin: 10px 20px;
+    padding: 5px;
+  .result-filter {
+    width: 20%;
+    margin-right: 20px;
+    box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
+    max-height: 700px;
+    // position: fixed;
+    left: 15px;
+    overflow-y: auto;
+  }
+  .color-selected {
+    background-color:rgba(120, 181, 126, 0.52);
+  }
+  .items-container {
+    display: grid;
+    list-style: none;
+    grid-template-columns: repeat(4, 250px);
+    grid-row-gap: 20px;
+    grid-template-rows: min-content;
+    .item {
+        padding: 5px;
+        list-style: none;
+        width: 200px;
+        box-shadow: 0 0.5em 1.5em 0 rgba(0,0,0,.1);
+        transition: all 1s;
+        justify-self: center;
+        &:hover {
+          position: relative;
+          top: -5px;
+        }
+        .mrp-section {
+          background-color: rgb(244, 243, 242);
+          color: #231f20;
+          font: 14px ProximaNovaA-Regular;
+          padding: 5px;
+          .price-section {
+            margin-bottom: 5px;
+          }
+          .disc-price {
+            color: #6e6e71;
+            text-decoration: line-through;
+            margin-right: 10px;
+          }
+          .org-price {
+            font-weight: bold;
+          }
+          .add-item-section {
+            font-size: 14px;
+            .act-btn {
+              font-size: 14px;
+              display: inline-block;
+              width: 19px;
+              border: 1px solid;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+            .quantity-sec {
+              display: inline-block;
+              min-width: 20px;
+              margin-left: 1px;
+              margin-right: 1px;
+            }
+          }
+        }
+        .brand {
+          text-align: left;
+          color: #999;
+          font: 11px ProximaNovaA-Regular;
+          margin-bottom: 2px;
+        }
+        .desc {
+          color: #000;
+          font: 13px ProximaNovaA-Regular;
+          text-align: left;
+          position: relative;
+          left: 7px;
+        }
+    }
+  }
+  }
+}
