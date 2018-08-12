@@ -1,1 +1,1 @@
-This is the sample project allowing search, sort, login, and graphical representation of student data
+This is the sample project showcasing react and redux to create a e commerce website, supporting cart functionality and checkout.
