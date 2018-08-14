@@ -37,7 +37,13 @@ class Cart extends React.Component {
     removeItemFromCart(id, false, true)
   }
   goToCheckout = () => {
-    const { cartTotal, history } = this.props
+    const { cartTotal, history, cartItems } = this.props
+    sessionStorage.setItem("cartItems",
+    JSON.stringify(cartItems)
+   )
+    sessionStorage.setItem("cartTotal",
+      JSON.stringify({ cartTotal })
+    )
     if(cartTotal) {
       history.push("/checkout")
     }

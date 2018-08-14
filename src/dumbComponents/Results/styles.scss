@@ -31,17 +31,18 @@
     list-style: none;
     grid-template-columns: repeat(4, 250px);
     grid-row-gap: 20px;
-    grid-template-rows: min-content;
+    grid-template-rows: repeat(auto-fill, 220px);
     .item {
         padding: 5px;
         list-style: none;
         width: 200px;
         box-shadow: 0 0.5em 1.5em 0 rgba(0,0,0,.1);
-        transition: all 1s;
+        transition: top 1s;
+        transition-timing-function: ease-in;
         justify-self: center;
+        border: 2px solid transparent;
         &:hover {
-          position: relative;
-          top: -5px;
+          transform: scale(1.05);
         }
         .mrp-section {
           background-color: rgb(244, 243, 242);

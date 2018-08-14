@@ -23,7 +23,18 @@ if (process.env.NODE_ENV === "development") {
 }
 const composeEnhancers = reduxDevTools || compose
 const enhancer = applyMiddleware(...middlewares)
-const store = createStore(app, {}, composeEnhancers(enhancer));
+let stateFromSession = {}
+try {
+	stateFromSession = JSON.parse(sessionStorage.getItem("appState")) || {}
+} catch(e) {
+	console.log("error")
+}
+const store = createStore(app, stateFromSession, composeEnhancers(enhancer));
+
+window.addEventListener("unload", () => {
+	console.log("now saving")
+	sessionStorage.setItem("appState", JSON.stringify(store.getState()))
+})
 
 
 ReactDOM.render(

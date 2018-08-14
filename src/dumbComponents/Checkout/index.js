@@ -4,15 +4,6 @@ import UserForm from "dumbComponents/UserForm"
 import "./styles.css"
 
 class Checkout extends React.Component {
-  componentDidMount() {
-    const { cartItems, cartTotal } = this.props
-    sessionStorage.setItem("cartItems",
-    JSON.stringify(cartItems)
-  )
-  sessionStorage.setItem("cartTotal",
-    JSON.stringify({ cartTotal })
-  )
-  }
   render() {
     const { cartItems, cartTotal } = this.props
     return (

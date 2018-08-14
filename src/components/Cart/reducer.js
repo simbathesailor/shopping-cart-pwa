@@ -1,7 +1,7 @@
 import * as CartConstants from "./consts"
 
 const initialAuthState = {
-  cartItems: {},
+  cartItems: {}
 }
 
 function Cart(state = initialAuthState, action) {
