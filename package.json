@@ -66,7 +66,6 @@
     "start:dev": "npm run sass-compile-src && npm run sass-watcher && node scripts/start.js",
     "build": "npm run sass-compile-src && node scripts/build.js",
     "start": "serve -s build",
-    "postinstall": "npm run build",
     "test": "node scripts/test.js --env=jsdom",
     "heroku-postbuild": "npm run build"
   },
