@@ -8,6 +8,13 @@
     width: 20%;
     margin-right: 20px;
     box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
+    .cross-btn {
+      position: absolute;
+      right: 11px;
+      top: 11px;
+      font-weight: 700;
+      font-size: 30px;
+    }
     .section-head {
       font-size: 14px;
       font-weight: bold;

@@ -1,7 +1,6 @@
 .App {
   text-align: center;
-  position: relative;
- }
+  position: relative; }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -16,8 +15,14 @@
   left: 0;
   right: 0;
   top: 0;
-  z-index: 1;
-}
+  z-index: 1; }
+
+.fa-bars {
+  font-size: 20px; }
+
+@media screen and (max-width: 450px) {
+  .App-header {
+    display: flex; } }
 
 .App-title {
   font-size: 1.5em; }

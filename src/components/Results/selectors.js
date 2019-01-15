@@ -131,8 +131,29 @@ const getMaxMinPrice = createSelector(
     return {max , min}
   }
 )
+const getFilter = state => state.results.filter
+const convertToObjFilterObj = createSelector(
+  getFilter,
+  (filter) => {
+    const { brand, discount } = filter
+    const brandEnhanced = brand.reduce((acc, elem) => {
+      acc[elem] = true
+      return acc
+    }, {})
+    //discount
+    const discountEnhanced = discount.reduce((acc, elem) => {
+      acc[elem] = true
+      return acc
+    }, {})
+    return {
+      brands : brandEnhanced,
+      discount: discountEnhanced
+    }
+  }
+)
 export {
     getFilteredResults,
     getUniqueBrands,
     getMaxMinPrice,
+    convertToObjFilterObj,
 }

@@ -7,26 +7,40 @@
   width: 20%;
   margin-right: 20px;
   box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1); }
-  .result-filter .section-head {
-    font-size: 14px;
-    font-weight: bold;
-    text-align: left;
-    margin-bottom: 10px; }
-  .result-filter .discount-section .checkbox-row {
-    display: flex;
-    margin-left: 0px;
-    align-items: center;
-    margin-bottom: 10px; }
-    .result-filter .discount-section .checkbox-row input {
-      margin-right: 14px;
-      height: 15px;
-      width: 15px; }
-  .result-filter .price-section .slider-input {
-    display: flex; }
-    .result-filter .price-section .slider-input label {
-      margin-right: 10px; }
-  .result-filter .brand-section .checkbox-row {
-    margin-bottom: 10px;
-    display: flex; }
-    .result-filter .brand-section .checkbox-row input {
-      margin-right: 14px; }
+
+.result-filter .cross-btn {
+  position: absolute;
+  right: 11px;
+  top: 11px;
+  font-weight: 700;
+  font-size: 30px; }
+
+.result-filter .section-head {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px; }
+
+.result-filter .discount-section .checkbox-row {
+  display: flex;
+  margin-left: 0px;
+  align-items: center;
+  margin-bottom: 10px; }
+
+.result-filter .discount-section .checkbox-row input {
+  margin-right: 14px;
+  height: 15px;
+  width: 15px; }
+
+.result-filter .price-section .slider-input {
+  display: flex; }
+
+.result-filter .price-section .slider-input label {
+  margin-right: 10px; }
+
+.result-filter .brand-section .checkbox-row {
+  margin-bottom: 10px;
+  display: flex; }
+
+.result-filter .brand-section .checkbox-row input {
+  margin-right: 14px; }

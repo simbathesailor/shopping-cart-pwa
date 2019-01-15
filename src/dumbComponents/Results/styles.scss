@@ -1,9 +1,15 @@
 .result-container {
+   background: #f7f7f7;
   .preference-container {
     display: flex;
     justify-content: flex-end;
     position: relative;
     margin: 70px 60px 0px 60px;
+    @media screen and (max-width: 450px) {
+      margin : 0;
+      top: 70px;
+      right: 5px;
+    }
     select {
       height: 26px;
       background: transparent;
@@ -14,35 +20,58 @@
     display: flex;
     margin: 10px 20px;
     padding: 5px;
-  .result-filter {
-    width: 20%;
-    margin-right: 20px;
-    box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
-    max-height: 700px;
-    // position: fixed;
-    left: 15px;
-    overflow-y: auto;
-  }
-  .color-selected {
-    background-color:rgba(120, 181, 126, 0.52);
-  }
-  .items-container {
-    display: grid;
-    list-style: none;
-    grid-template-columns: repeat(4, 250px);
-    grid-row-gap: 20px;
-    grid-template-rows: repeat(auto-fill, 220px);
-    .item {
+    @media screen and (max-width: 450px) {
+      flex-direction: column;
+      padding-top: 80px;
+    }
+    .result-filter {
+      width: 20%;
+      margin-right: 20px;
+      box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
+      max-height: 700px;
+      // position: fixed;
+      left: 15px;
+      overflow-y: auto;
+      @media screen and (max-width: 450px) {
+        width: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        z-index: 2;
+        background: #ebdd64;
+      }
+    }
+    .color-selected {
+      background-color: rgba(120, 181, 126, 0.52) !important;
+    }
+    .items-container {
+      display: grid;
+      list-style: none;
+      grid-template-columns: repeat(4, 250px);
+      grid-row-gap: 20px;
+      grid-template-rows: repeat(auto-fill, 220px);
+      @media screen and (max-width: 450px) {
+        grid-template-columns: repeat(1, 100%);
+        justify-content: center;
+      }
+      .item {
         padding: 5px;
         list-style: none;
+        background: #fff;
         width: 200px;
-        box-shadow: 0 0.5em 1.5em 0 rgba(0,0,0,.1);
+        box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
         transition: top 1s;
         transition-timing-function: ease-in;
         justify-self: center;
         border: 2px solid transparent;
         &:hover {
           transform: scale(1.05);
+        }
+        @media screen and (max-width: 450px) {
+          width: 100%;
         }
         .mrp-section {
           background-color: rgb(244, 243, 242);
@@ -91,7 +120,7 @@
           position: relative;
           left: 7px;
         }
+      }
     }
-  }
   }
 }
