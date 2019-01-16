@@ -51,7 +51,7 @@ class Results extends React.Component {
     }
     return (
       <div className="result-container">
-        <Preference setSortBy={setSortBy} />
+        {/* <Preference setSortBy={setSortBy} /> */}
         <div className="results-main">
           {showFilter && (
             <Filters

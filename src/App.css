@@ -35,3 +35,16 @@
     transform: rotate(0deg); }
   to {
     transform: rotate(360deg); } }
+
+.push-btn {
+  position: absolute;
+  top: 100px;
+  left: 10px; }
+
+.toggle-push {
+  position: absolute;
+  top: 62px;
+  left: 50px;
+  background: red;
+  height: 30px;
+  left: 100px; }
