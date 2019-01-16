@@ -19,15 +19,15 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   console.log('Fetch intercepted for:', event.request.url);
-  return fetch(event.request);
-  // event.respondWith(caches.match(event.request)
-  //   .then(cachedResponse => {
-  //       if (cachedResponse) {
-  //         return cachedResponse;
-  //       }
-  //       return fetch(event.request);
-  //     })
-  //   );
+  // return fetch(event.request);
+  event.respondWith(caches.match(event.request)
+    .then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+        return fetch(event.request);
+      })
+    );
 });
 
 
