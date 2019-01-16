@@ -28,10 +28,12 @@
     -->
     <style>
       .banner {
-        align-content: center;
         display: none;
         justify-content: center;
         width: 100%;
+        top: 108px;
+        position: absolute;
+        z-index: 1;
       }
     </style>
     <title>React App</title>
@@ -61,6 +63,7 @@
             console.log("servicve worker is regfistered", swReg);
             // swRegistration = swReg
             // initializeUI();
+            // console.log("swReg ==> scope,"swReg.scope)
           })
           .catch(error => {
             console.log("service worker error", error);
