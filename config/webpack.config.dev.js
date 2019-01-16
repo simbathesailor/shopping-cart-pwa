@@ -105,14 +105,8 @@ module.exports = {
       // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
       // { parser: { requireEnsure: false } },
       {
-        module: {
-          rules: [
-            {
-              test: /\.worker\.js$/,
-              use: { loader: 'worker-loader' }
-            }
-          ]
-        }
+        test: /\.worker\.js$/,
+        use: { loader: 'worker-loader' }
       },
       // First, run the linter.
       // It's important to do this before Babel processes the JS

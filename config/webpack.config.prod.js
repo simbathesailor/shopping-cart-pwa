@@ -114,14 +114,8 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
-        module: {
-          rules: [
-            {
-              test: /\.worker\.js$/,
-              use: { loader: 'worker-loader' }
-            }
-          ]
-        }
+        test: /\.worker\.js$/,
+        use: { loader: 'worker-loader' }
       },
       {
         test: /\.(js|jsx|mjs)$/,
