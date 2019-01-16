@@ -64,7 +64,7 @@
     "sass-watcher": "./node_modules/.bin/node-sass --watch --recursive src -o src & SASS_WATCHER_DUMB_PID=$!",
     "sass-compile-src": "./node_modules/.bin/node-sass --recursive src -o src",
     "start:dev": "npm run sass-compile-src && npm run sass-watcher && node scripts/start.js",
-    "build": "npm run sass-compile-src && node scripts/build.js",
+    "build": "npm install && npm run sass-compile-src && node scripts/build.js",
     "start": "serve -s build",
     "test": "node scripts/test.js --env=jsdom",
     "heroku-postbuild": "npm run build"
