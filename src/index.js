@@ -12,7 +12,8 @@ import App from "./App";
 import ScrollToTop from "shared/ScrollToTop";
 //import registerServiceWorker from './registerServiceWorker';
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import "worker-loader?name=./service-worker.js!./service-worker.js";
+//import "./service.worker.js"
+//console.log("workerer", Worker)
 
 const middlewares = [thunk];
 let reduxDevTools = false;
@@ -51,50 +52,51 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+// window.onload = function() {
+  // if ("serviceWorker" in navigator && "PushManager" in window) {
+  //   console.log("service Worker and push ios supported");
+  
+  //   navigator.serviceWorker
+  //     .register("service.worker.js")
+  //     .then(swReg => {
+  //       console.log("servicve worker is regfistered", swReg);
+  //       // swRegistration = swReg
+  //       // initializeUI();
+  //     })
+  //     .catch(error => {
+  //       console.log("service worker error", error);
+  //     });
+  // } else {
+  //   console.warn("push notifications not supported");
+  //   // pushButton.textContent = "Push Not Supported"
+  // }
+//   let deferredPrompt;
+// window.addEventListener("beforeinstallprompt", event => {
+//   // Prevent Chrome 67 and earlier from automatically showing the prompt
+//   event.preventDefault();
+//   console.log("event in beforeinstalprompt", event)
+//   // Stash the event so it can be triggered later.
+//   deferredPrompt = event;
 
-if ("serviceWorker" in navigator && "PushManager" in window) {
-  console.log("service Worker and push ios supported");
+//   // Attach the install prompt to a user gesture
+//   document.querySelector("#installBtn").addEventListener("click", event => {
+//     // Show the prompt
+//     deferredPrompt.prompt();
 
-  navigator.serviceWorker
-    .register("service-worker.js")
-    .then(swReg => {
-      console.log("servicve worker is regfistered", swReg);
-      // swRegistration = swReg
-      // initializeUI();
-    })
-    .catch(error => {
-      console.log("service worker error", error);
-    });
-} else {
-  console.warn("push notifications not supported");
-  // pushButton.textContent = "Push Not Supported"
-}
+//     // Wait for the user to respond to the prompt
+//     deferredPrompt.userChoice.then(choiceResult => {
+//       if (choiceResult.outcome === "accepted") {
+//         console.log("User accepted the A2HS prompt");
+//       } else {
+//         console.log("User dismissed the A2HS prompt");
+//       }
+//       deferredPrompt = null;
+//     });
+//   });
 
-let deferredPrompt;
-window.addEventListener("beforeinstallprompt", event => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  event.preventDefault();
-  console.log("event in beforeinstalprompt", event)
-  // Stash the event so it can be triggered later.
-  deferredPrompt = event;
+//   // Update UI notify the user they can add to home screen
+//   document.querySelector("#installBanner").style.display = "flex";
+// });
+// }
 
-  // Attach the install prompt to a user gesture
-  document.querySelector("#installBtn").addEventListener("click", event => {
-    // Show the prompt
-    deferredPrompt.prompt();
-
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then(choiceResult => {
-      if (choiceResult.outcome === "accepted") {
-        console.log("User accepted the A2HS prompt");
-      } else {
-        console.log("User dismissed the A2HS prompt");
-      }
-      deferredPrompt = null;
-    });
-  });
-
-  // Update UI notify the user they can add to home screen
-  document.querySelector("#installBanner").style.display = "flex";
-});
 //registerServiceWorker();

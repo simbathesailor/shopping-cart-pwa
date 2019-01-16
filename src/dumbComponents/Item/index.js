@@ -26,7 +26,7 @@ class Item extends React.Component {
       "color-selected": iteminCart && iteminCart.quantity,
     })
     return (
-      <li 
+      <ul 
         className={classItem} draggable={true}
         onDragOver={ev => {
           ev.preventDefault();
@@ -50,7 +50,7 @@ class Item extends React.Component {
             <span className="act-btn" onClick={() => this.onClickPlus(item)}>+</span>
           </p>
         </li>
-    </li>
+    </ul>
     )
   }
 }

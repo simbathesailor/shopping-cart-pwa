@@ -39,8 +39,8 @@
   <body>
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <section id="installBanner" class="banner">
-        <button id="installBtn">Install app</button>
-      </section>
+      <button id="installBtn">Install app</button>
+    </section>
     <div id="root"></div>
     <!-- <button id="btn-add">Show Add to home screen</button> -->
     <!--
@@ -53,5 +53,22 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      if(window.navigator) {
+        navigator.serviceWorker
+      .register("service.worker.js")
+      .then(swReg => {
+        console.log("servicve worker is regfistered", swReg);
+        // swRegistration = swReg
+        // initializeUI();
+      })
+      .catch(error => {
+        console.log("service worker error", error);
+      });
+      } else {
+        console.warn("push notifications not supported");
+        // pushButton.textContent = "Push Not Supported"
+      }
+    </script>
   </body>
 </html>

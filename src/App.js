@@ -37,7 +37,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           {isAdaptive && (
-            <i class="fas fa-bars" onClick={this.changeFilterShowStatus} />
+            <i className="fas fa-bars" onClick={this.changeFilterShowStatus} />
           )}
           <Cart />
         </header>

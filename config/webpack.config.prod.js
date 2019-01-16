@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+// const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
@@ -113,6 +113,16 @@ module.exports = {
 
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
+      {
+        module: {
+          rules: [
+            {
+              test: /\.worker\.js$/,
+              use: { loader: 'worker-loader' }
+            }
+          ]
+        }
+      },
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
