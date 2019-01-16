@@ -1,6 +1,6 @@
 
 const cacheName = 'cache-v1';
-const precacheResources = [];
+const precacheResources = ["/"];
 
 self.addEventListener('install', event => {
   console.log('Service worker install event!');
