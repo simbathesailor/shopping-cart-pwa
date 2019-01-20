@@ -1,3 +1,13 @@
+export const askNotificationPermission = () => {
+  if (!('Notification' in window)) {
+      console.log('This browser does not support notifications!');
+      return;
+    }
+  Notification.requestPermission(status => {
+    console.log('Notification permission status:', status);
+  });
+}
+
 export default function displayNotification() {
   // TODO 2.3 - display a Notification
   if (Notification.permission == "granted") {

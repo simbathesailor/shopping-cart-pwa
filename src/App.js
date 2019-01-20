@@ -28,40 +28,43 @@ class App extends Component {
     /**
      * Work in progress, need to see how to modularize below code
      */
-    if (!('Notification' in window)) {
-      console.log('This browser does not support notifications!');
-      return;
-    }
-    Notification.requestPermission(status => {
-      console.log('Notification permission status:', status);
-    });
-    if (Notification.permission == 'granted') {
-      navigator.serviceWorker.getRegistration().then(reg => {
+    // if (!('Notification' in window)) {
+    //   console.log('This browser does not support notifications!');
+    //   return;
+    // }
+    // Notification.requestPermission(status => {
+    //   console.log('Notification permission status:', status);
+    // });
+    // if (Notification.permission == 'granted') {
+    //   navigator.serviceWorker.getRegistration().then(reg => {
     
-        // TODO 2.4 - Add 'options' object to configure the notification
-        const options = {
-          body: 'First notification!',
-          icon: 'images/notification-flat.png',
-          vibrate: [100, 50, 100],
-          data: {
-            dateOfArrival: Date.now(),
-            primaryKey: 1
-          },
-          actions: [
-            {action: 'explore', title: 'Go to the site',
-              icon: 'images/checkmark.png'},
-            {action: 'close', title: 'Close the notification',
-              icon: 'images/xmark.png'},
-          ]
-          // TODO 2.5 - add actions to the notification
+    //     // TODO 2.4 - Add 'options' object to configure the notification
+    //     const options = {
+    //       body: 'First notification!',
+    //       icon: 'images/notification-flat.png',
+    //       vibrate: [100, 50, 100],
+    //       //tag: 'id1',  //This tag can be added so that notification will be removed
+    //       //once new notification has arrived
+    //       tag: "id1",
+    //       data: {
+    //         dateOfArrival: Date.now(),
+    //         primaryKey: 1
+    //       },
+    //       actions: [
+    //         {action: 'explore', title: 'Go to the site',
+    //           icon: 'images/checkmark.png'},
+    //         {action: 'close', title: 'Close the notification',
+    //           icon: 'images/xmark.png'},
+    //       ]
+    //       // TODO 2.5 - add actions to the notification
         
-          // TODO 5.1 - add a tag to the notification
+    //       // TODO 5.1 - add a tag to the notification
         
-        };
-       // handling caching of manifest.json. should not happen ideally
-        reg.showNotification('Hello world!', options);
-      });
-    }
+    //     };
+    //    // handling caching of manifest.json. should not happen ideally
+    //     reg.showNotification('Hello world!', options);
+    //   });
+    // }
   }
   changeFilterShowStatus = status => {
     this.setState({

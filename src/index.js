@@ -10,14 +10,11 @@ import { Router } from "react-router-dom";
 import app from "./store";
 import App from "./App";
 import ScrollToTop from "shared/ScrollToTop";
-//import registerServiceWorker from './registerServiceWorker';
-// eslint-disable-next-line import/no-webpack-loader-syntax
-//import "./service.worker.js"
-//console.log("workerer", Worker)
+import { REACT_APP_PUSH_SUBSCRIPTION_PUBLIC_KEY } from "processenv"
 
 const middlewares = [thunk];
 let reduxDevTools = false;
-//registerServiceWorker()
+
 if (process.env.NODE_ENV === "development") {
   reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__; //eslint-disable-line no-underscore-dangle
   middlewares.push(
@@ -49,7 +46,7 @@ ReactDOM.render(
         <button className="js-notify-btn">NotifyBtn</button>
         <button className="js-push-btn">Enable Push Messaging</button>
         <section
-          class="js-sub-endpoint"
+          className="js-sub-endpoint"
           style={{
             display: "none",
             width: "80%"
@@ -69,67 +66,27 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-
-// const workerTasks = (() => {
-//   if (!("Notification" in window)) {
-//     console.log("This browser does not support notifications!");
-//     return;
-//   }
-
-//   Notification.requestPermission(status => {
-//     console.log("Notification permission status:", status);
-//   });
-// })();
-
-// window.onload = function() {
-// if ("serviceWorker" in navigator && "PushManager" in window) {
-//   console.log("service Worker and push ios supported");
-
-//   navigator.serviceWorker
-//     .register("service.worker.js")
-//     .then(swReg => {
-//       console.log("servicve worker is regfistered", swReg);
-//       // swRegistration = swReg
-//       // initializeUI();
-//     })
-//     .catch(error => {
-//       console.log("service worker error", error);
-//     });
-// } else {
-//   console.warn("push notifications not supported");
-//   // pushButton.textContent = "Push Not Supported"
-// }
-//   let deferredPrompt;
-// window.addEventListener("beforeinstallprompt", event => {
-//   // Prevent Chrome 67 and earlier from automatically showing the prompt
-//   event.preventDefault();
-//   console.log("event in beforeinstalprompt", event)
-//   // Stash the event so it can be triggered later.
-//   deferredPrompt = event;
-
-//   // Attach the install prompt to a user gesture
-//   document.querySelector("#installBtn").addEventListener("click", event => {
-//     // Show the prompt
-//     deferredPrompt.prompt();
-
-//     // Wait for the user to respond to the prompt
-//     deferredPrompt.userChoice.then(choiceResult => {
-//       if (choiceResult.outcome === "accepted") {
-//         console.log("User accepted the A2HS prompt");
-//       } else {
-//         console.log("User dismissed the A2HS prompt");
-//       }
-//       deferredPrompt = null;
-//     });
-//   });
-
-//   // Update UI notify the user they can add to home screen
-//   document.querySelector("#installBanner").style.display = "flex";
-// });
-// }
-
-//registerServiceWorker();
+/**
+ * pwa relate code below
+ */
 let isSubscribed = false;
+function urlB64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+//vapid change 1
+const applicationServerPublicKey = REACT_APP_PUSH_SUBSCRIPTION_PUBLIC_KEY;
+
 function updateBtn() {
   if (Notification.permission === 'denied') {
     pushButton.textContent = 'Push Messaging Blocked';
@@ -148,10 +105,14 @@ function updateBtn() {
 }
 function subscribeUser() {
   // TODO 3.4 - subscribe to the push service
+  //vapid change 2
+  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
   window.swRegistration.pushManager.subscribe({
-    userVisibleOnly: true
+    userVisibleOnly: true,
+    applicationServerKey: applicationServerKey //vapid change 3
   })
   .then(subscription => {
+    //backend api call to send subscription object
     console.log('User is subscribed:', subscription);
     updateSubscriptionOnServer(subscription);
     isSubscribed = true;
@@ -196,7 +157,9 @@ function updateSubscriptionOnServer(subscription) {
   if (subscription) {
     subscriptionJson.textContent = JSON.stringify(subscription);
     endpointURL.textContent = subscription.endpoint;
-    subAndEndpoint.style.display = "block";
+    console.log("subscription", JSON.stringify(subscription))
+    console.log("endpointURL", subscription.endpoint)
+    //subAndEndpoint.style.display = "block"; //can be used for testing
   } else {
     subAndEndpoint.style.display = "none";
   }

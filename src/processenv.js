@@ -1,0 +1,6 @@
+
+const { REACT_APP_PUSH_SUBSCRIPTION_PUBLIC_KEY } = process.env 
+
+export {
+  REACT_APP_PUSH_SUBSCRIPTION_PUBLIC_KEY
+}
