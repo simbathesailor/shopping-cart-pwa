@@ -1,20 +1,32 @@
-export const askNotificationPermission = () => {
-  if (!('Notification' in window)) {
-      console.log('This browser does not support notifications!');
-      return;
-    }
-  Notification.requestPermission(status => {
-    console.log('Notification permission status:', status);
-  });
-}
+/**
+ * Helper function to ask notification subscription
+ */
 
-export default function displayNotification() {
+export const askNotificationPermission = () => {
+  return new Promise((resolve, reject) => {
+    if (!("Notification" in window)) {
+      console.log("This browser does not support notifications!");
+      resolve("failed");
+    }
+    Notification.requestPermission(status => {
+      console.log("Notification permission status:", status);
+    })
+      .then(status => {
+        resolve(status);
+      })
+      .catch(() => {
+        resolve("failed");
+      });
+  });
+};
+
+export const displayNotification = () => {
   // TODO 2.3 - display a Notification
-  if (Notification.permission == "granted") {
+  if (Notification.permission === "granted") {
     navigator.serviceWorker.getRegistration().then(reg => {
       // TODO 2.4 - Add 'options' object to configure the notification
       const options = {
-        body: "First notification!",
+        body: "Added to cart",
         icon: "logo.svg",
         vibrate: [100, 50, 100],
         data: {
@@ -41,4 +53,4 @@ export default function displayNotification() {
       reg.showNotification("Hello world!", options);
     });
   }
-}
+};

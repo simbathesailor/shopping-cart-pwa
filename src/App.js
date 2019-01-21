@@ -97,12 +97,12 @@ class App extends Component {
     const { shouldShowFilter, isAdaptive } = this.state;
     return (
       <div className="App">
-        {/* <header className="App-header">
+        <header className="App-header">
           {isAdaptive && (
             <i className="fas fa-bars" onClick={this.changeFilterShowStatus} />
           )}
           <Cart />
-        </header> */}
+        </header>
         <Switch>
           <Route
             exact

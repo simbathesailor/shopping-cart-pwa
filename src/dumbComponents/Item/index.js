@@ -1,9 +1,11 @@
 import React from "react"
 import classNames from "classnames"
+import { displayNotification } from "sw/notification"
 
 class Item extends React.Component {
   onClickPlus = (item) => {
     const { addItemToCart } = this.props
+    displayNotification()
     addItemToCart(item)
   }
 

@@ -44,7 +44,7 @@ self.addEventListener("notificationclose", event => {
  */
 self.addEventListener("notificationclick", event => {
   // TODO 2.8 - change the code to open a custom page
-  console.log("notification click", event);
+  console.log("notification click", event, event.data);
   clients.openWindow("https://google.com");
   // event.currentTarget.close() //progmatically close the notification
   self.registration.getNotifications().then(notifications => {

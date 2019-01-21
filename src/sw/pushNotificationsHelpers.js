@@ -5,12 +5,14 @@ import { urlB64ToUint8Array } from "sw/helper";
  * Check whether the page is subscribed for push notification
  */
 
- export const isSubscribedToPushNotification = async registration => {
+ export const isSubscribedToPushNotification = async (registration) => {
   if (!registration) return false;
+  console.log("registration in isSubscribedToPushNotification", registration)
   const isRegistered = await registration
-    .getSubscription()
+    .pushManager.getSubscription()
     .then(sub => !!sub)
     .catch(e => false);
+  console.log("isRegistered", isRegistered)
   return isRegistered;
 };
 
@@ -33,7 +35,7 @@ export const subscribeUser = ({ applicationServerPublicKey }) =>
         if (subscription) {
           resolve(subscription);
         } else {
-          reject(false);
+          reject(null);
         }
       })
       .catch(err => {
@@ -42,7 +44,7 @@ export const subscribeUser = ({ applicationServerPublicKey }) =>
         } else {
           console.error("Failed to subscribe the user: ", err);
         }
-        reject(false);
+        reject(null);
       });
   });
 
