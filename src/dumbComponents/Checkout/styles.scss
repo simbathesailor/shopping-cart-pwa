@@ -1,27 +1,40 @@
 .checkout-container {
   margin-top: 70px;
-  table {
-    width: 80%;
-    margin-top: 10px;
-    margin: 10px auto;
-    border-collapse: collapse;
-    thead {
-      tr {
-        background: #555;
-        color: #fff;
-        height: 38px;
-      }
-    }
-    tbody {
-      tr {
-        height: 35px;
-        td {
-          border: 1px solid grey;
+  padding-left: 10px;
+  padding-right: 10px;
+  .table-container {
+    width: 100%;
+    overflow: auto;
+    table {
+      width: 400px;
+      margin-top: 10px;
+      margin: 10px auto;
+      border-collapse: collapse;
+      thead {
+        tr {
+          background: #555;
+          color: #fff;
+          height: 38px;
+          th {
+            padding-left: 5px;
+            padding-right: 5px;
+          }
         }
       }
-      tr:nth-child(even){background-color: #f2f2f2;}
+      tbody {
+        tr {
+          height: 35px;
+          td {
+            border: 1px solid grey;
+          }
+        }
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+      }
     }
   }
+
   .pay-btn {
     width: 300px;
     margin: 0px auto;
@@ -31,6 +44,7 @@
     margin-top: 20px;
     font-weight: bold;
     font-size: 24px;
+    background-color: #ff828c;
+    color: #fff;
   }
-
 }

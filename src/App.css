@@ -7,8 +7,8 @@
   height: 80px; }
 
 .App-header {
-  background-color: cadetblue;
   height: 60px;
+  background: linear-gradient(-0.55turn, #ff9fa3, #f76066);
   padding: 20px;
   color: white;
   position: fixed;
@@ -22,6 +22,7 @@
 
 @media screen and (max-width: 450px) {
   .App-header {
+    background: linear-gradient(-0.55turn, #ff9fa3, #f76066);
     display: flex; } }
 
 .App-title {

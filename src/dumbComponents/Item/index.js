@@ -38,7 +38,14 @@ class Item extends React.Component {
         }}
         onDragStart={ev => this.drag(ev)}
       >
-        <img src={item.p_img_url} alt="noimg"/>
+        <div className="img-container"
+          style={{
+            backgroundImage: `url(${item.p_img_url})`
+
+          }}
+        >
+          {/* <img src={item.p_img_url} alt="noimg"/> */}
+        </div>
         <p className="brand">{item.p_brand}</p>
         <p className="desc">{item.p_desc}</p>
         <li className="mrp-section">

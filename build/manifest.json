@@ -18,8 +18,10 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#536878",
-  "background_color": "#fff"
+  "background_color": "#fff",
+  "scope": "../",
+  "gcm_sender_id": "220151591748"
 }

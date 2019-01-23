@@ -7,6 +7,9 @@
 
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 450px) {
+    width: 90%;
+  }
   .label-part {
     display: flex;
     flex-direction: column;

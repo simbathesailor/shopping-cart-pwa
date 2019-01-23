@@ -1,12 +1,13 @@
 .result-container {
-   background: #f7f7f7;
+  background: #f7f7f7;
+  padding-top: 62px;
   .preference-container {
     display: flex;
     justify-content: flex-end;
     position: relative;
     margin: 70px 60px 0px 60px;
     @media screen and (max-width: 450px) {
-      margin : 0;
+      margin: 0;
       top: 70px;
       right: 5px;
     }
@@ -22,7 +23,6 @@
     padding: 5px;
     @media screen and (max-width: 450px) {
       flex-direction: column;
-      padding-top: 80px;
     }
     .result-filter {
       width: 20%;
@@ -32,20 +32,23 @@
       // position: fixed;
       left: 15px;
       overflow-y: auto;
+      background: linear-gradient(-0.55turn, #ff9a9e, #fad0c4);
+      color: #062230;
       @media screen and (max-width: 450px) {
         width: 100%;
         width: 100%;
-        position: absolute;
+        position: fixed;
         left: 0;
         bottom: 0;
         right: 0;
         top: 0;
         z-index: 2;
-        background: #ebdd64;
+        background: linear-gradient(-0.55turn, #ff9a9e, #fad0c4);
+        color: #000;
       }
     }
     .color-selected {
-      background-color: rgba(120, 181, 126, 0.52) !important;
+      background-color: #ef7e7f87 !important;
     }
     .items-container {
       display: grid;
@@ -59,6 +62,7 @@
       }
       .item {
         padding: 5px;
+        position: relative;
         list-style: none;
         background: #fff;
         width: 200px;
@@ -67,6 +71,13 @@
         transition-timing-function: ease-in;
         justify-self: center;
         border: 2px solid transparent;
+        height: 220px;
+        .img-container {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          height: calc(100% - 82px);
+        }
         &:hover {
           transform: scale(1.05);
         }
@@ -77,9 +88,15 @@
           background-color: rgb(244, 243, 242);
           color: #231f20;
           font: 14px ProximaNovaA-Regular;
+          position: absolute;
+          bottom: 0px;
+          bottom: 0px;
+          right: 0px;
+          left: 0;
           padding: 5px;
           .price-section {
             margin-bottom: 5px;
+            font-weight: bold;
           }
           .disc-price {
             color: #6e6e71;
@@ -108,17 +125,16 @@
           }
         }
         .brand {
-          text-align: left;
           color: #999;
+          text-align: center;
           font: 11px ProximaNovaA-Regular;
           margin-bottom: 2px;
         }
         .desc {
           color: #000;
           font: 13px ProximaNovaA-Regular;
-          text-align: left;
+          text-align: center;
           position: relative;
-          left: 7px;
         }
       }
     }

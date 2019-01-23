@@ -1,10 +1,24 @@
 const cacheName = "cache-v1";
-const precacheResources = ["/"];
-
+const precacheResources = [
+  "/",
+  "/index.html",
+  "/favicon.ico",
+  "/assets/images/placeholder-img.jpg",
+  ...self.__precacheManifest.reduce((acc, elem) => {
+    acc.push(elem.url);
+    return acc;
+  }, [])
+];
+/**
+ * Install phase is good for caching static assets
+ * Activate Phase is good for updating cache
+ * fetch event is good place for deciding whether to send from cache or
+ */
 self.addEventListener("install", event => {
   console.log("Service worker install event!");
   self.skipWaiting(); //need to see if it is right to add skipwaiting or it will make
   // the benifits of service worker go away
+  console.log("***event request in install***", event);
   event.waitUntil(
     caches.open(cacheName).then(cache => {
       return cache.addAll(precacheResources);
@@ -14,21 +28,92 @@ self.addEventListener("install", event => {
 
 self.addEventListener("activate", event => {
   console.log("Service worker activate event!");
-});
-
-self.addEventListener("fetch", event => {
-  console.log("Fetch intercepted for:", event.request.url);
-  // return fetch(event.request);
-  event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request);
+  /**
+   * remove the outdatedCache
+   */
+  console.log("precacheResources", precacheResources);
+  event.waitUntil(
+    caches.keys().then(keyList => {
+      return Promise.all(
+        keyList.map(key => {
+          if (key !== cacheName) return caches.delete(key);
+        })
+      );
     })
   );
+  return self.clients.claim();
+});
+/**
+ * CACHING STRATEGY START
+ */
+//Keep static assets in cache
+//keep dynamic assets in indexDB
+self.addEventListener("fetch", event => {
+  console.log("Fetch intercepted for:", event.request.url, precacheResources);
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        return caches.open(cacheName).then(cache => {
+          if (event.request.method === "GET") {
+            cache.put(event.request.url, response.clone());
+          }
+          console.log("event.request.url ===>", event.request.url)
+          // if (
+          //   event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)
+          // ) {
+          //   return caches.open(cacheName).then(function(cache) {
+          //     return cache.match('/assets/images/placeholder-img.jpg');
+          //   });
+          // }
+          return response;
+        });
+        // const resp = caches.match(event.request);
+      })
+      .catch(e => {
+        console.log("failure case")
+        if (event.request.method === "GET") {
+          console.log("in get")
+          caches
+            .match(event.request)
+            .then(cachedResponse => {
+              if (cachedResponse) {
+                return cachedResponse;
+              }
+            })
+            .catch(e => {
+              console.log("resource is not there in cache also")
+
+              if (
+                event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)
+              ) {
+                //return caches.match("/assets/images/placeholder-img.jpg");
+                return caches.open(cacheName).then(function(cache) {
+                  return cache.match('/assets/images/placeholder-img.jpg');
+                });
+              }
+              return
+            });
+        }
+      })
+  );
+
+  // caches.match(event.request).then(cachedResponse => {
+  //   console.log("match found", cachedResponse);
+  //   if (cachedResponse) {
+  //     return cachedResponse;
+  //   }
+  //   return fetch(event.request)
+  //     .then((res) => {
+  //       if(event.request.method === "GET") {
+
+  //       }
+  //     });
+  // })
 });
 
+/**
+ * CACHING STRATEGY END
+ */
 /**
  * Event to do something on notification close
  */
@@ -45,7 +130,7 @@ self.addEventListener("notificationclose", event => {
 self.addEventListener("notificationclick", event => {
   // TODO 2.8 - change the code to open a custom page
   console.log("notification click", event, event.data);
-  clients.openWindow("https://google.com");
+  clients.openWindow("https://licious.in");
   // event.currentTarget.close() //progmatically close the notification
   self.registration.getNotifications().then(notifications => {
     notifications.forEach(notification => {
@@ -146,7 +231,7 @@ self.addEventListener("push", event => {
   //       client.navigate('samples/page' + primaryKey + '.html'); //you can use any of your route. not tested but looks like so
   //       client.focus(); //can be used to focus the app
   //     } else {
-  //       // there are no visible windows. Open one. 
+  //       // there are no visible windows. Open one.
   //       clients.openWindow('samples/page' + primaryKey + '.html');
   //       notification.close();
   //     }
