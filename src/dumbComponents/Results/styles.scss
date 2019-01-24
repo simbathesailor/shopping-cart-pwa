@@ -39,6 +39,8 @@
       overflow-y: auto;
       background: linear-gradient(-0.55turn, #ff9a9e, #fad0c4);
       color: #062230;
+      position: sticky;
+      top: 60px;
       @media screen and (max-width: 450px) {
         width: 100%;
         width: 100%;
