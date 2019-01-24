@@ -50,7 +50,7 @@ class Cart extends React.Component {
     const { cartItemsCount, cartItems, cartTotal } = this.props;
     const { isVisibleList } = this.state;
     return (
-      <div>
+      <div className="cart-main-container">
          <div
         className="cart-container"
         onDrop={this.onDrop}

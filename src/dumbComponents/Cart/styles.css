@@ -1,19 +1,25 @@
-.cart-container {
+.cart-main-container {
+  position: absolute;
+  right: 20px;
+  top: 16px; }
+
+.cart-main-container .cart-container {
   position: absolute;
   display: flex;
   height: 60px;
   right: 20px;
-  top: 12px;
+  top: 0px;
+  width: 130px;
   cursor: pointer; }
 
-.cart-container .cart {
+.cart-main-container .cart-container .cart {
   background-position: 2.9170780597545356% 2.0236087689713322%;
   background-image: url("https://www.bigbasket.com/static/v2071/custPage/build/content/img/header.css.svg");
   width: 39.38px;
   height: 28px;
   margin-right: 10px; }
 
-.cart-expand {
+.cart-main-container .cart-expand {
   position: absolute;
   box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
   top: 51px;
@@ -23,26 +29,26 @@
   padding: 5px; }
 
 @media screen and (max-width: 450px) {
-  .cart-expand {
+  .cart-main-container .cart-expand {
     width: inherit;
     left: 8px;
     top: 61px; } }
 
-.cart-expand .list-container {
+.cart-main-container .cart-expand .list-container {
   max-height: 300px;
   overflow-y: auto; }
 
-.cart-expand .total-section .sub-total {
+.cart-main-container .cart-expand .total-section .sub-total {
   margin-bottom: 10px;
   color: #000; }
 
-.cart-expand .total-section .checkout-btn {
+.cart-main-container .cart-expand .total-section .checkout-btn {
   height: 40px;
   width: 100%;
   background: lightblue;
   border: none; }
 
-.cart-expand .item-row {
+.cart-main-container .cart-expand .item-row {
   height: 90px;
   display: flex;
   padding: 2px;
@@ -53,25 +59,25 @@
   align-items: center;
   justify-content: space-between; }
 
-.cart-expand .item-row .info-sec {
+.cart-main-container .cart-expand .item-row .info-sec {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding-left: 5px; }
 
-.cart-expand .item-row .info-sec p {
+.cart-main-container .cart-expand .item-row .info-sec p {
   text-align: left; }
 
-.cart-expand .item-row .quantity {
+.cart-main-container .cart-expand .item-row .quantity {
   position: relative;
   left: -10px; }
 
-.cart-expand .item-row .img-it-row {
+.cart-main-container .cart-expand .item-row .img-it-row {
   margin-right: 2px;
   height: 85px;
   border: 1px solid #f2f2f2; }
 
-.cart-expand .item-row .remove {
+.cart-main-container .cart-expand .item-row .remove {
   width: 15px;
   position: relative;
   left: -12px;
