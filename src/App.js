@@ -10,7 +10,7 @@ class App extends Component {
   state = {
     shouldShowFilter: false,
     isAdaptive: window && window.innerWidth <= 450,
-    isOffline: navigator ? !navigator.onLine : false
+    isOffline: false
   };
   componentDidMount() {
     //React-helmet
