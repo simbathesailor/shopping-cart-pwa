@@ -21,7 +21,13 @@ self.addEventListener("install", event => {
   console.log("***event request in install***", event);
   event.waitUntil(
     caches.open(cacheName).then(cache => {
-      return cache.addAll(precacheResources);
+      const finalPrecache = precacheResources.reduce((acc, elem) => {
+        if(elem.indexOf("hot-update.json") === -1) {
+          acc.push(elem)
+        }
+        return acc
+      }, [])
+      return cache.addAll(finalPrecache);
     })
   );
 });
@@ -53,13 +59,25 @@ self.addEventListener("fetch", event => {
   event.respondWith(
     fetch(event.request)
     .then((res) => {
-      if (precacheResources.includes(event.request.url) || event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)) {
-        caches.put(event.request.url, res.clone());
+      const finalPrecache = precacheResources.reduce((acc, elem) => {
+        if(elem.indexOf("hot-update.json") === -1) {
+          acc.push(elem)
+        }
+        return acc
+      }, [])
+      if (finalPrecache.includes(event.request.url) || event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)) {
+        console.log("save the images in caches or update cache", event.request.url)
+        return caches.open(cacheName).then(cache => {
+          cache.put(event.request.url, res.clone());
+          return res;
+        });
       }
       return res
     })
     .catch(function() {
-      return caches.match(event.request);
+      return caches.match(event.request, {
+        cacheName,
+      });
     })
   );
 
