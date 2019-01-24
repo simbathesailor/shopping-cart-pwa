@@ -53,7 +53,7 @@ self.addEventListener("fetch", event => {
   event.respondWith(
     fetch(event.request)
     .then((res) => {
-      if (precacheResources.includes(event.request.url)) {
+      if (precacheResources.includes(event.request.url) || event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)) {
         caches.put(event.request.url, res.clone());
       }
       return res
