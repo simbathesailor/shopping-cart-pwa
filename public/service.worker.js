@@ -52,53 +52,62 @@ self.addEventListener("fetch", event => {
   console.log("Fetch intercepted for:", event.request.url, precacheResources);
   event.respondWith(
     fetch(event.request)
-      .then((response) => {
-        
-        return caches.open(cacheName).then(cache => {
-          if (event.request.method === "GET") {
-            if(response) {
-              cache.put(event.request.url, response.clone());
-            }
-          }
-          console.log("event.request.url ===>", event.request.url)
-          // if (
-          //   event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)
-          // ) {
-          //   return caches.open(cacheName).then(function(cache) {
-          //     return cache.match('/assets/images/placeholder-img.jpg');
-          //   });
-          // }
-          return response;
-        });
-        // const resp = caches.match(event.request);
-      })
-      .catch(e => {
-        console.log("failure case")
-        if (event.request.method === "GET") {
-          console.log("in get")
-          caches
-            .match(event.request)
-            .then(cachedResponse => {
-              if (cachedResponse) {
-                return cachedResponse;
-              }
-            })
-            .catch(e => {
-              console.log("resource is not there in cache also")
-
-              if (
-                event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)
-              ) {
-                //return caches.match("/assets/images/placeholder-img.jpg");
-                return caches.open(cacheName).then(function(cache) {
-                  return cache.match('/assets/images/placeholder-img.jpg');
-                });
-              }
-              return
-            });
-        }
-      })
+    .then((res) => {
+      if (precacheResources.includes(event.request.url)) {
+        caches.put(event.request.url, res.clone());
+      }
+      return res
+    })
+    .catch(function() {
+      return caches.match(event.request);
+    })
   );
+
+  // event.respondWith(
+  //   fetch(event.request)
+  //     .then((response) => {
+  //       return caches.open(cacheName).then(cache => {
+  //         if (event.request.method === "GET") {
+  //           cache.put(event.request.url, response.clone());
+  //         }
+  //         console.log("event.request.url ===>", event.request.url)
+  //         // if (
+  //         //   event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)
+  //         // ) {
+  //         //   return caches.open(cacheName).then(function(cache) {
+  //         //     return cache.match('/assets/images/placeholder-img.jpg');
+  //         //   });
+  //         // }
+  //         return response;
+  //       });
+  //       // const resp = caches.match(event.request);
+  //     })
+  //     .catch(e => {
+  //       console.log("failure case")
+  //       // if (event.request.method === "GET") {
+  //       //   console.log("in get")
+  //       //   caches
+  //       //     .match(event.request)
+  //       //     .then(cachedResponse => {
+  //       //       if (cachedResponse) {
+  //       //         return cachedResponse;
+  //       //       }
+  //       //     })
+  //       //     // .catch(e => {
+  //       //     //   console.log("resource is not there in cache also")
+
+  //       //     //   if (
+  //       //     //     event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)
+  //       //     //   ) {
+  //       //     //     //return caches.match("/assets/images/placeholder-img.jpg");
+  //       //     //     // return caches.open(cacheName).then(function(cache) {
+  //       //     //       return caches.match('/assets/images/placeholder-img.jpg');
+  //       //     //     // });
+  //       //     //   }
+  //       //     // });
+  //       // }
+  //     })
+  // );
 
   // caches.match(event.request).then(cachedResponse => {
   //   console.log("match found", cachedResponse);
