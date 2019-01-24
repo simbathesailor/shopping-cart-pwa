@@ -94,7 +94,8 @@
 
 @media screen and (max-width: 450px) {
   .result-container .results-main .items-container .item {
-    width: 100%; } }
+    width: 85%;
+    border-radius: 5px; } }
 
 .result-container .results-main .items-container .item .mrp-section {
   background-color: #f4f3f2;

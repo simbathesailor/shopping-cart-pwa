@@ -87,7 +87,8 @@
           transform: scale(1.05);
         }
         @media screen and (max-width: 450px) {
-          width: 100%;
+          width: 85%;
+          border-radius: 5px;
         }
         .mrp-section {
           background-color: rgb(244, 243, 242);
