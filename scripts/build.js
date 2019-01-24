@@ -12,7 +12,8 @@ process.on('unhandledRejection', err => {
 });
 //require('dotenv').config();
 // Ensure environment variables are read.
-require('../config/env');
+//Enable dotenv below line in development mode only
+// require('../config/env');
 
 const path = require('path');
 const chalk = require('chalk');
