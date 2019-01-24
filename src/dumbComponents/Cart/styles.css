@@ -1,7 +1,8 @@
 .cart-main-container {
   position: absolute;
-  right: 20px;
-  top: 16px; }
+  right: 0px;
+  top: 16px;
+  left: 0; }
 
 .cart-main-container .cart-container {
   position: absolute;
@@ -31,8 +32,8 @@
 @media screen and (max-width: 450px) {
   .cart-main-container .cart-expand {
     width: inherit;
-    left: 8px;
-    top: 61px; } }
+    left: 0px;
+    top: 45px; } }
 
 .cart-main-container .cart-expand .list-container {
   max-height: 300px;

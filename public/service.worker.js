@@ -22,11 +22,11 @@ self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(cacheName).then(cache => {
       const finalPrecache = precacheResources.reduce((acc, elem) => {
-        if(elem.indexOf("hot-update.json") === -1) {
-          acc.push(elem)
+        if (elem.indexOf("hot-update.json") === -1) {
+          acc.push(elem);
         }
-        return acc
-      }, [])
+        return acc;
+      }, []);
       return cache.addAll(finalPrecache);
     })
   );
@@ -58,87 +58,31 @@ self.addEventListener("fetch", event => {
   console.log("Fetch intercepted for:", event.request.url, precacheResources);
   event.respondWith(
     fetch(event.request)
-    .then((res) => {
-      const finalPrecache = precacheResources.reduce((acc, elem) => {
-        if(elem.indexOf("hot-update.json") === -1) {
-          acc.push(elem)
+      .then(res => {
+        const finalPrecache = precacheResources.reduce((acc, elem) => {
+          if (elem.indexOf("hot-update.json") === -1) {
+            acc.push(elem);
+          }
+          return acc;
+        }, []);
+        if (
+          finalPrecache.includes(event.request.url) ||
+          event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/) ||
+          event.request.url.includes("https://images.unsplash.com")
+        ) {
+          return caches.open(cacheName).then(cache => {
+            cache.put(event.request.url, res.clone());
+            return res;
+          });
         }
-        return acc
-      }, [])
-      if (finalPrecache.includes(event.request.url) || event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)) {
-        console.log("save the images in caches or update cache", event.request.url)
-        return caches.open(cacheName).then(cache => {
-          cache.put(event.request.url, res.clone());
-          return res;
+        return res;
+      })
+      .catch(function() {
+        return caches.match(event.request, {
+          cacheName
         });
-      }
-      return res
-    })
-    .catch(function() {
-      return caches.match(event.request, {
-        cacheName,
-      });
-    })
+      })
   );
-
-  // event.respondWith(
-  //   fetch(event.request)
-  //     .then((response) => {
-  //       return caches.open(cacheName).then(cache => {
-  //         if (event.request.method === "GET") {
-  //           cache.put(event.request.url, response.clone());
-  //         }
-  //         console.log("event.request.url ===>", event.request.url)
-  //         // if (
-  //         //   event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)
-  //         // ) {
-  //         //   return caches.open(cacheName).then(function(cache) {
-  //         //     return cache.match('/assets/images/placeholder-img.jpg');
-  //         //   });
-  //         // }
-  //         return response;
-  //       });
-  //       // const resp = caches.match(event.request);
-  //     })
-  //     .catch(e => {
-  //       console.log("failure case")
-  //       // if (event.request.method === "GET") {
-  //       //   console.log("in get")
-  //       //   caches
-  //       //     .match(event.request)
-  //       //     .then(cachedResponse => {
-  //       //       if (cachedResponse) {
-  //       //         return cachedResponse;
-  //       //       }
-  //       //     })
-  //       //     // .catch(e => {
-  //       //     //   console.log("resource is not there in cache also")
-
-  //       //     //   if (
-  //       //     //     event.request.url.match(/\.(png|jpg|jpeg|gif|webp)/)
-  //       //     //   ) {
-  //       //     //     //return caches.match("/assets/images/placeholder-img.jpg");
-  //       //     //     // return caches.open(cacheName).then(function(cache) {
-  //       //     //       return caches.match('/assets/images/placeholder-img.jpg');
-  //       //     //     // });
-  //       //     //   }
-  //       //     // });
-  //       // }
-  //     })
-  // );
-
-  // caches.match(event.request).then(cachedResponse => {
-  //   console.log("match found", cachedResponse);
-  //   if (cachedResponse) {
-  //     return cachedResponse;
-  //   }
-  //   return fetch(event.request)
-  //     .then((res) => {
-  //       if(event.request.method === "GET") {
-
-  //       }
-  //     });
-  // })
 });
 
 /**

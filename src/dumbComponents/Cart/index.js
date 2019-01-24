@@ -51,23 +51,23 @@ class Cart extends React.Component {
     const { isVisibleList } = this.state;
     return (
       <div className="cart-main-container">
-         <div
-        className="cart-container"
-        onDrop={this.onDrop}
-        onDragOver={ev => {
-          ev.preventDefault();
-        }}
-        onDragEnter={ev => {
-          ev.preventDefault();
-        }}
-      >
-        <div className="cart" onClick={this.changeVisibilityList} />
-        <div onClick={this.changeVisibilityList}>
-          <p>My Basket</p>
-          <p>{cartItemsCount} Items</p>
+        <div
+          className="cart-container"
+          onDrop={this.onDrop}
+          onDragOver={ev => {
+            ev.preventDefault();
+          }}
+          onDragEnter={ev => {
+            ev.preventDefault();
+          }}
+        >
+          <div className="cart" onClick={this.changeVisibilityList} />
+          <div onClick={this.changeVisibilityList}>
+            <p>My Basket</p>
+            <p>{cartItemsCount} Items</p>
+          </div>
         </div>
-      </div>
-         {isVisibleList && (
+        {isVisibleList && (
           <div className="cart-expand">
             <ul className="list-container">
               {cartItems &&
@@ -113,7 +113,6 @@ class Cart extends React.Component {
           </div>
         )}
       </div>
-      
     );
   }
 }

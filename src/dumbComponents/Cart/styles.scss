@@ -1,7 +1,8 @@
 .cart-main-container {
   position: absolute;
-  right: 20px;
+  right: 0px;
   top: 16px;
+  left: 0;
   .cart-container {
     position: absolute;
     display: flex;
@@ -28,8 +29,8 @@
     padding: 5px;
     @media screen and (max-width: 450px) {
       width: inherit;
-      left: 8px;
-      top: 61px;
+      left: 0px;
+      top: 45px;
     }
     .list-container {
       max-height: 300px;

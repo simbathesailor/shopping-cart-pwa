@@ -195,13 +195,6 @@ function initializeUI() {
   //   updateBtn();
   // });
 }
-window.addEventListener("offline", () => {
-  alert("you are offline boy !!")
-})
-
-window.addEventListener("online", () => {
-  alert("Its good to have you back!!")
-})
 
 if (("serviceWorker" in navigator) && window) {
   window.addEventListener("load", () => {

@@ -9,11 +9,25 @@ import "./App.css";
 class App extends Component {
   state = {
     shouldShowFilter: false,
-    isAdaptive: window && window.innerWidth <= 450
+    isAdaptive: window && window.innerWidth <= 450,
+    isOffline: navigator ? !navigator.onLine : false
   };
   componentDidMount() {
     //React-helmet
     // const isAdaptive = window.innerWidth <= 450;
+    window.addEventListener("offline", () => {
+      // alert("you are offline boy !!")
+      this.setState({
+        isOffline: true
+      })
+    })
+    
+    window.addEventListener("online", () => {
+      // alert("Its good to have you back!!")
+      this.setState({
+        isOffline: false
+      })
+    })
     window.onresize = event => {
       if (event.target.innerWidth <= 450) {
         this.setState({
@@ -94,7 +108,7 @@ class App extends Component {
   //   // }
   // }
   render() {
-    const { shouldShowFilter, isAdaptive } = this.state;
+    const { shouldShowFilter, isAdaptive, isOffline } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -120,6 +134,9 @@ class App extends Component {
           />
           <Route exact path="/checkout" component={Checkout} />
         </Switch>
+        {isOffline && <div className="offline-section">
+          You are offline !!
+        </div>}
       </div>
     );
   }

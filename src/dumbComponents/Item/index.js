@@ -1,34 +1,31 @@
-import React from "react"
-import classNames from "classnames"
-import { displayNotification } from "sw/notification"
+import React from "react";
+import classNames from "classnames";
+import { displayNotification } from "sw/notification";
 
 class Item extends React.Component {
-  onClickPlus = (item) => {
-    const { addItemToCart } = this.props
-    displayNotification()
-    addItemToCart(item)
-  }
+  onClickPlus = item => {
+    const { addItemToCart } = this.props;
+    displayNotification();
+    addItemToCart(item);
+  };
 
-  onClickMinus = (id) => {
-    const { removeItemFromCart } = this.props
-    removeItemFromCart(id, false)
-  }
-  drag = (ev) => {
+  onClickMinus = id => {
+    const { removeItemFromCart } = this.props;
+    removeItemFromCart(id, false);
+  };
+  drag = ev => {
     console.log("dragging");
-    const { item } = this.props
-    ev.dataTransfer.setData(
-      "text",
-      JSON.stringify(item)
-    );
+    const { item } = this.props;
+    ev.dataTransfer.setData("text", JSON.stringify(item));
   };
   render() {
-    const { item, cartItems } = this.props
-    const iteminCart = cartItems[item.sku]
-    const classItem = classNames("item" , {
-      "color-selected": iteminCart && iteminCart.quantity,
-    })
+    const { item, cartItems } = this.props;
+    const iteminCart = cartItems[item.sku];
+    const classItem = classNames("item", {
+      "color-selected": iteminCart && iteminCart.quantity
+    });
     return (
-      <ul 
+      <ul
         className={classItem} draggable={true}
         onDragOver={ev => {
           ev.preventDefault();
@@ -50,7 +47,7 @@ class Item extends React.Component {
         <p className="desc">{item.p_desc}</p>
         <li className="mrp-section">
           <p className="price-section">MRP&nbsp;:&nbsp;
-          {item.dis_val && <span className="disc-price">Rs {item.mrp}</span> }  
+          {item.dis_val && <span className="disc-price">Rs {item.mrp}</span> }
             <span className="org-price">{item.sp}</span>
           </p>
           <p className="add-item-section">
@@ -64,4 +61,4 @@ class Item extends React.Component {
   }
 }
 
-export default Item
+export default Item;
