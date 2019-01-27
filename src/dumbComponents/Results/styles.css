@@ -202,3 +202,9 @@
   font: 13px ProximaNovaA-Regular;
   text-align: center;
   position: relative; }
+
+.result-container .results-main .right-panel .items-container .item .fa-share-alt {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px; }

@@ -113,14 +113,16 @@ class Results extends React.Component {
     }
     removeItemFromCart(data.sku, false, true);
   };
-  changeBackground = (timeOfDay) => {
-    const resultContainer = document.getElementsByClassName("result-container")[0]
-    if(timeOfDay === "morning") {
-      resultContainer.style.background = "#fff"
+  changeBackground = timeOfDay => {
+    const resultContainer = document.getElementsByClassName(
+      "result-container"
+    )[0];
+    if (timeOfDay === "morning") {
+      resultContainer.style.background = "#fff";
     } else {
-      resultContainer.style.background = "#262c36"
+      resultContainer.style.background = "#262c36";
     }
-  }
+  };
   render() {
     const {
       isAdaptive,
@@ -143,6 +145,7 @@ class Results extends React.Component {
     if (!isAdaptive) {
       showFilter = true;
     }
+    const isPipEnabled = document.pictureInPictureEnabled;
     return (
       <div className="result-container">
         {/* <Preference setSortBy={setSortBy} /> */}
@@ -156,12 +159,14 @@ class Results extends React.Component {
           <div className="right-panel">
             <div className="action-layer-1">
               <Capsuletab callBack={this.changeBackground} />
-              <button
-                className="toggle-pip"
-                onClick={this.pictureInPictureLogic}
-              >
-                Toggle Picture-in-Picture
-              </button>
+              {isPipEnabled && (
+                <button
+                  className="toggle-pip"
+                  onClick={this.pictureInPictureLogic}
+                >
+                  Toggle PIP
+                </button>
+              )}
             </div>
             <video
               ref={this.video}
@@ -190,6 +195,7 @@ class Results extends React.Component {
                       addItemToCart={addItemToCart}
                       removeItemFromCart={removeItemFromCart}
                       cartItems={cartItems}
+                      isAdaptive={isAdaptive}
                     />
                   );
                 })}

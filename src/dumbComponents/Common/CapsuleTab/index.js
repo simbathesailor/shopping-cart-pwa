@@ -33,11 +33,11 @@ class Capsuletab extends React.Component {
       <div
         ref={this.capsuleContainer}
         onClick={this.toggleTab}
-        class="capsule-container"
+        className="capsule-container"
       >
-        <div ref={this.circleTab} class="circle morning" />
-        <i class="fas fa-sun" />
-        <i class="fas fa-moon" />
+        <div ref={this.circleTab} className="circle morning" />
+        <i className="fas fa-sun" />
+        <i className="fas fa-moon" />
       </div>
     );
   }
