@@ -114,12 +114,11 @@ class Results extends React.Component {
     removeItemFromCart(data.sku, false, true);
   };
   changeBackground = (timeOfDay) => {
-    console.log("timeOfDay", timeOfDay)
     const resultContainer = document.getElementsByClassName("result-container")[0]
     if(timeOfDay === "morning") {
-      resultContainer.style.backgroundImage = "url(https://images.unsplash.com/photo-1531658045967-24bb08a28e1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80)"
+      resultContainer.style.background = "#fff"
     } else {
-      resultContainer.style.backgroundImage = "url(https://images.unsplash.com/photo-1507400492013-162706c8c05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=909&q=80)"
+      resultContainer.style.background = "#262c36"
     }
   }
   render() {
