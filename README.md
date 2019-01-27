@@ -7,7 +7,7 @@ Developed on Node version: __v8.9.4__
 npm version : __5.6.0__
 OS: __Linux mint__
 
-1. Clone or download this repo https://github.com/anil26/shopping-cart.git
+1. Clone or download this repo https://github.com/simbathesailor/shopping-cart
 
 2. Change directory to "shopping-cart" folder // cd cd shopping-cart
 
