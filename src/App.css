@@ -7,8 +7,8 @@
   height: 80px; }
 
 .App-header {
-  background-color: cadetblue;
   height: 60px;
+  background: linear-gradient(-0.55turn, #ff9fa3, #f76066);
   padding: 20px;
   color: white;
   position: fixed;
@@ -22,6 +22,7 @@
 
 @media screen and (max-width: 450px) {
   .App-header {
+    background: linear-gradient(-0.55turn, #ff9fa3, #f76066);
     display: flex; } }
 
 .App-title {
@@ -35,3 +36,28 @@
     transform: rotate(0deg); }
   to {
     transform: rotate(360deg); } }
+
+.push-btn {
+  position: absolute;
+  top: 100px;
+  left: 10px; }
+
+.toggle-push {
+  position: absolute;
+  top: 62px;
+  left: 50px;
+  background: red;
+  height: 30px;
+  left: 100px; }
+
+.offline-section {
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background: #af1826;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold; }

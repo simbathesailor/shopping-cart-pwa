@@ -11,6 +11,7 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
+require('dotenv').config();
 // Ensure environment variables are read.
 require('../config/env');
 

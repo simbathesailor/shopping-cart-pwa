@@ -67,15 +67,15 @@ class Filters extends React.Component {
     return (
       <div className="result-filter">
         <h3>Filters</h3>
-        <span onClick={this.onclickCross} class="cross-btn">X</span>
+        <span onClick={this.onclickCross} className="cross-btn">X</span>
         <div className="discount-section">
           <p className="section-head">DISCOUNT</p>
           {discountRange &&
-            discountRange.map(element => {
+            discountRange.map((element, index) => {
               const { discount } = objectFormatFilters;
               const isChecked = discount[element.value];
               return (
-                <div className="checkbox-row">
+                <div className="checkbox-row" key={index}>
                   <input
                     type="checkbox"
                     checked={isChecked}
@@ -98,8 +98,9 @@ class Filters extends React.Component {
               name="quantity"
               min={min}
               max={max}
-              defaultValue={rangeValue}
+              // defaultValue={rangeValue}
               value={rangeValue}
+              onChange={() => {}}
               onInput={throttle(e => this.changeValue(e, "from"), 1000, {
                 trailing: true
               })}

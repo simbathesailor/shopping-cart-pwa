@@ -1,0 +1,39 @@
+.capsule-container {
+  height: 26px;
+  width: 66px;
+  background: #000;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 27px; }
+
+@media screen and (max-width: 450px) {
+  .capsule-container {
+    margin-right: 0px; } }
+
+.capsule-container .fa-sun {
+  color: yellow;
+  position: absolute;
+  left: 4px; }
+
+.capsule-container .fa-moon {
+  color: yellow;
+  position: absolute;
+  right: 4px; }
+
+.capsule-container .circle {
+  z-index: 1;
+  position: absolute;
+  background: white;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 2px 3px #ffa2c5;
+  transition: all 0.5s ease-in-out; }
+
+.capsule-container .morning {
+  left: 2px; }
+
+.capsule-container .night {
+  left: calc(100% - 26px); }

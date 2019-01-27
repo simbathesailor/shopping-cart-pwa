@@ -6,6 +6,9 @@
   box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center; }
+  @media screen and (max-width: 450px) {
+    .userinfo-container {
+      width: 90%; } }
   .userinfo-container .label-part {
     display: flex;
     flex-direction: column; }

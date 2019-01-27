@@ -11,6 +11,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
+const InjectManifest = require('workbox-webpack-plugin').InjectManifest;
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -94,7 +95,6 @@ module.exports = {
       // This often causes confusion because we only process files within src/ with babel.
       // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
       // please link the files into your node_modules/ and let module-resolution kick in.
-      // Make sure your source files are compiled, as they will not be processed in any way.
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
     ],
   },
@@ -104,9 +104,12 @@ module.exports = {
       // TODO: Disable require.ensure as it's not a standard language feature.
       // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
       // { parser: { requireEnsure: false } },
-
+      {
+        test: /\.worker\.js$/,
+        use: { loader: 'worker-loader' }
+      },
       // First, run the linter.
-      // It's important to do this before Babel processes the JS.
+      // It's important to do this before Babel processes the JS
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
@@ -215,6 +218,11 @@ module.exports = {
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In development, this will be an empty string.
+     // Make sure your source files are compiled, as they will not be processed in any way.
+    new InjectManifest({
+      swSrc: paths.serviceWorkerPath,
+      swDest: "service.worker.js"
+    }),
     new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
