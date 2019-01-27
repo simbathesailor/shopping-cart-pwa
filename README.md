@@ -5,7 +5,7 @@ This is the sample project showcasing react and redux to create a e commerce web
 
 Developed on Node version: __v8.9.4__
 npm version : __5.6.0__
-OS: __Linux mint__
+OS: __Linux mint__, MacOs Mojave v10.14
 
 1. Clone or download this repo https://github.com/simbathesailor/shopping-cart
 
