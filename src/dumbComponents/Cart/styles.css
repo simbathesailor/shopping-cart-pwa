@@ -3,71 +3,84 @@
   right: 0px;
   top: 16px;
   left: 0; }
-  .cart-main-container .cart-container {
-    position: absolute;
-    display: flex;
-    height: 60px;
-    right: 20px;
-    top: 0px;
-    width: 130px;
-    cursor: pointer; }
-    .cart-main-container .cart-container .cart {
-      background-position: 2.9170780597545356% 2.0236087689713322%;
-      background-image: url("https://www.bigbasket.com/static/v2071/custPage/build/content/img/header.css.svg");
-      width: 39.38px;
-      height: 28px;
-      margin-right: 10px; }
+
+.cart-main-container .cart-container {
+  position: absolute;
+  display: flex;
+  height: 60px;
+  right: 20px;
+  top: 0px;
+  width: 130px;
+  cursor: pointer; }
+
+.cart-main-container .cart-container .cart {
+  background-position: 2.9170780597545356% 2.0236087689713322%;
+  background-image: url("https://www.bigbasket.com/static/v2071/custPage/build/content/img/header.css.svg");
+  width: 39.38px;
+  height: 28px;
+  margin-right: 10px; }
+
+.cart-main-container .cart-expand {
+  position: absolute;
+  box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
+  top: 51px;
+  background: #f1f1f1;
+  width: 400px;
+  right: 0px;
+  padding: 5px; }
+
+@media screen and (max-width: 450px) {
   .cart-main-container .cart-expand {
-    position: absolute;
-    box-shadow: 0 0.5em 1.5em 0 rgba(0, 0, 0, 0.1);
-    top: 51px;
-    background: #f1f1f1;
-    width: 400px;
-    right: 0px;
-    padding: 5px; }
-    @media screen and (max-width: 450px) {
-      .cart-main-container .cart-expand {
-        width: inherit;
-        left: 0px;
-        top: 45px; } }
-    .cart-main-container .cart-expand .list-container {
-      max-height: 300px;
-      overflow-y: auto; }
-    .cart-main-container .cart-expand .total-section .sub-total {
-      margin-bottom: 10px;
-      color: #000; }
-    .cart-main-container .cart-expand .total-section .checkout-btn {
-      height: 40px;
-      width: 100%;
-      background: lightblue;
-      border: none; }
-    .cart-main-container .cart-expand .item-row {
-      height: 90px;
-      display: flex;
-      padding: 2px;
-      font: 13px ProximaNovaA-Regular;
-      color: #000;
-      background: #fff;
-      margin-bottom: 5px;
-      align-items: center;
-      justify-content: space-between; }
-      .cart-main-container .cart-expand .item-row .info-sec {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-left: 5px; }
-        .cart-main-container .cart-expand .item-row .info-sec p {
-          text-align: left; }
-      .cart-main-container .cart-expand .item-row .quantity {
-        position: relative;
-        left: -10px; }
-      .cart-main-container .cart-expand .item-row .img-it-row {
-        margin-right: 2px;
-        height: 85px;
-        border: 1px solid #f2f2f2; }
-      .cart-main-container .cart-expand .item-row .remove {
-        width: 15px;
-        position: relative;
-        left: -12px;
-        color: #ff0000de;
-        font-weight: 700; }
+    width: inherit;
+    left: 0px;
+    top: 45px; } }
+
+.cart-main-container .cart-expand .list-container {
+  max-height: 300px;
+  overflow-y: auto; }
+
+.cart-main-container .cart-expand .total-section .sub-total {
+  margin-bottom: 10px;
+  color: #000; }
+
+.cart-main-container .cart-expand .total-section .checkout-btn {
+  height: 40px;
+  width: 100%;
+  background: lightblue;
+  border: none; }
+
+.cart-main-container .cart-expand .item-row {
+  height: 90px;
+  display: flex;
+  padding: 2px;
+  font: 13px ProximaNovaA-Regular;
+  color: #000;
+  background: #fff;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: space-between; }
+
+.cart-main-container .cart-expand .item-row .info-sec {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 5px; }
+
+.cart-main-container .cart-expand .item-row .info-sec p {
+  text-align: left; }
+
+.cart-main-container .cart-expand .item-row .quantity {
+  position: relative;
+  left: -10px; }
+
+.cart-main-container .cart-expand .item-row .img-it-row {
+  margin-right: 2px;
+  height: 85px;
+  border: 1px solid #f2f2f2; }
+
+.cart-main-container .cart-expand .item-row .remove {
+  width: 15px;
+  position: relative;
+  left: -12px;
+  color: #ff0000de;
+  font-weight: 700; }
